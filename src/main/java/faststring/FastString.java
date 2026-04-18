@@ -125,6 +125,12 @@ public class FastString {
     public native FastString append(byte[] bytes);
     public native FastString append(FastString other);
     
+    // Batch append operations (single JNI call - much faster)
+    public native FastString appendBatch(String s1, String s2);
+    public native FastString appendBatch(String s1, String s2, String s3);
+    public native FastString appendBatch(String s1, String s2, String s3, String s4);
+    public native FastString appendBatch(String[] strings);
+    
     // Fast substring (zero-copy - shares buffer)
     public native FastString substring(int beginIndex);
     public native FastString substring(int beginIndex, int endIndex);

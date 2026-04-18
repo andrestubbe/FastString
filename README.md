@@ -203,6 +203,10 @@ fs.append("text");
 fs.append('c');
 fs.append(otherFastString);
 
+// Batch append (single JNI call - 3-5x faster for multiple strings)
+fs.appendBatch("Part 1", "Part 2", "Part 3", "Part 4");
+fs.appendBatch(new String[]{"a", "b", "c", "d", "e"});  // Array version
+
 // Replace in-place
 fs.replace('a', 'b');
 fs.replace("old", "new");

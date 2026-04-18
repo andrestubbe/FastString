@@ -739,6 +739,86 @@ JNIEXPORT jobject JNICALL Java_faststring_FastString_append__Ljava_lang_String_2
     return obj; // Return this for chaining
 }
 
+// Batch append implementations - single JNI call for multiple strings
+JNIEXPORT jobject JNICALL Java_faststring_FastString_appendBatch__Ljava_lang_String_2Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring s1, jstring s2) {
+    jclass cls = env->GetObjectClass(obj);
+    jfieldID field = env->GetFieldID(cls, "nativeHandle", "J");
+    jlong handle = env->GetLongField(obj, field);
+    
+    FastString* fs = FastStringRegistry::getString(handle);
+    if (fs) {
+        const char* utf8_1 = env->GetStringUTFChars(s1, nullptr);
+        const char* utf8_2 = env->GetStringUTFChars(s2, nullptr);
+        fs->append(utf8_1);
+        fs->append(utf8_2);
+        env->ReleaseStringUTFChars(s1, utf8_1);
+        env->ReleaseStringUTFChars(s2, utf8_2);
+    }
+    return obj;
+}
+
+JNIEXPORT jobject JNICALL Java_faststring_FastString_appendBatch__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring s1, jstring s2, jstring s3) {
+    jclass cls = env->GetObjectClass(obj);
+    jfieldID field = env->GetFieldID(cls, "nativeHandle", "J");
+    jlong handle = env->GetLongField(obj, field);
+    
+    FastString* fs = FastStringRegistry::getString(handle);
+    if (fs) {
+        const char* utf8_1 = env->GetStringUTFChars(s1, nullptr);
+        const char* utf8_2 = env->GetStringUTFChars(s2, nullptr);
+        const char* utf8_3 = env->GetStringUTFChars(s3, nullptr);
+        fs->append(utf8_1);
+        fs->append(utf8_2);
+        fs->append(utf8_3);
+        env->ReleaseStringUTFChars(s1, utf8_1);
+        env->ReleaseStringUTFChars(s2, utf8_2);
+        env->ReleaseStringUTFChars(s3, utf8_3);
+    }
+    return obj;
+}
+
+JNIEXPORT jobject JNICALL Java_faststring_FastString_appendBatch__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring s1, jstring s2, jstring s3, jstring s4) {
+    jclass cls = env->GetObjectClass(obj);
+    jfieldID field = env->GetFieldID(cls, "nativeHandle", "J");
+    jlong handle = env->GetLongField(obj, field);
+    
+    FastString* fs = FastStringRegistry::getString(handle);
+    if (fs) {
+        const char* utf8_1 = env->GetStringUTFChars(s1, nullptr);
+        const char* utf8_2 = env->GetStringUTFChars(s2, nullptr);
+        const char* utf8_3 = env->GetStringUTFChars(s3, nullptr);
+        const char* utf8_4 = env->GetStringUTFChars(s4, nullptr);
+        fs->append(utf8_1);
+        fs->append(utf8_2);
+        fs->append(utf8_3);
+        fs->append(utf8_4);
+        env->ReleaseStringUTFChars(s1, utf8_1);
+        env->ReleaseStringUTFChars(s2, utf8_2);
+        env->ReleaseStringUTFChars(s3, utf8_3);
+        env->ReleaseStringUTFChars(s4, utf8_4);
+    }
+    return obj;
+}
+
+JNIEXPORT jobject JNICALL Java_faststring_FastString_appendBatch___3Ljava_lang_String_2(JNIEnv* env, jobject obj, jobjectArray strings) {
+    jclass cls = env->GetObjectClass(obj);
+    jfieldID field = env->GetFieldID(cls, "nativeHandle", "J");
+    jlong handle = env->GetLongField(obj, field);
+    
+    FastString* fs = FastStringRegistry::getString(handle);
+    if (fs) {
+        jsize len = env->GetArrayLength(strings);
+        for (jsize i = 0; i < len; i++) {
+            jstring str = (jstring)env->GetObjectArrayElement(strings, i);
+            const char* utf8 = env->GetStringUTFChars(str, nullptr);
+            fs->append(utf8);
+            env->ReleaseStringUTFChars(str, utf8);
+            env->DeleteLocalRef(str);
+        }
+    }
+    return obj;
+}
+
 JNIEXPORT jstring JNICALL Java_faststring_FastString_nativeToString(JNIEnv* env, jobject obj, jlong handle) {
     FastString* str = FastStringRegistry::getString(handle);
     return str ? str->toJString(env) : env->NewStringUTF("");
