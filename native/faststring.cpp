@@ -421,7 +421,7 @@ bool FastString::equals(const FastString& other) const {
 }
 
 int FastString::compareTo(const FastString& other) const {
-    size_t minLen = std::min(dataLen, other.dataLen);
+    size_t minLen = (dataLen < other.dataLen) ? dataLen : other.dataLen;
     int cmp = memcmp(buffer, other.buffer, minLen);
     if (cmp != 0) return cmp;
     return (dataLen < other.dataLen) ? -1 : (dataLen > other.dataLen) ? 1 : 0;
