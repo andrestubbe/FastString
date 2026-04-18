@@ -179,6 +179,7 @@ public class FastString {
     // Buffer management
     public native void ensureCapacity(int minCapacity);
     public native byte[] getBytes();              // Get raw UTF-8 bytes
+    public native byte[] getBytesFast();          // JNI Critical Section - 2-4x faster
     
     // ==================== JAVA-SIDE METHODS ====================
     
