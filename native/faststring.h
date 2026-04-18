@@ -46,7 +46,6 @@ public:
     void ensureCapacity(size_t minCapacity);
     size_t capacity() const;
     void shrinkToFit();
-    const char* data() const { return buffer; }  // Raw buffer access
     
     // Append operations (mutable)
     FastString& append(const char* str);
