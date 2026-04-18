@@ -105,7 +105,7 @@ private:
     char* buffer;           // UTF-8 byte buffer
     size_t bufSize;         // Total buffer size
     size_t dataLen;         // Current data length in bytes
-    size_t charCount;       // Cached UTF-8 character count (-1 if dirty)
+    mutable size_t charCount; // Cached UTF-8 character count (-1 if dirty)
     int simdOverride;       // SIMD level override (0=AUTO, 1=AVX2, 2=SSE4, 3=NONE)
     
     // Internal helpers
