@@ -32,6 +32,19 @@ mvn clean package
 | `mvn clean package -DskipTests` | Fast build |
 | `mvn exec:java` | Run benchmarks |
 
+## Testing
+
+```bash
+# Run all tests
+mvn test
+
+# Run benchmarks only
+mvn exec:java
+
+# Run specific test
+mvn test -Dtest=FastStringTest
+```
+
 ## Native Code Structure
 
 ```

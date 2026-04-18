@@ -291,42 +291,12 @@ byte[] bytes = fs.getBytes();
 
 ## 🛠️ Building from Source
 
-### Prerequisites
+See [COMPILE.md](COMPILE.md) for complete build instructions.
 
-- Java 17+
-- Visual Studio 2019+ with C++ tools
-- Maven 3.6+
-
-### Build Steps
-
+Quick start:
 ```bash
-# 1. Clone the repository
-git clone https://github.com/andrestubbe/faststring.git
-cd faststring
-
-# 2. Compile native DLL
 compile.bat
-
-# 3. Build Maven package
 mvn clean package
-
-# 4. Run benchmarks
-mvn exec:java
-```
-
----
-
-## 🧪 Testing
-
-```bash
-# Run all tests
-mvn test
-
-# Run benchmarks only
-mvn exec:java
-
-# Run specific test
-mvn test -Dtest=FastStringTest
 ```
 
 ---
