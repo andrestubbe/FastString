@@ -323,21 +323,6 @@ MIT License — see [LICENSE](LICENSE) file.
 
 ---
 
-## 🌟 FastJava Ecosystem
-
-FastString is part of the **FastJava** native performance ecosystem:
-
-| Module | Purpose | Speedup |
-|--------|---------|---------|
-| FastCore | JNI loader | Foundation |
-| **FastString** | **Mutable UTF-8 strings** | **10-100×** |
-| FastBytes | Byte buffers | 10× |
-| FastJSON | JSON parsing | 50× |
-| FastRobot | Screen capture | 10-17× |
-| FastScreen | DXGI capture | 500-2000 FPS |
-
----
-
-**Made with ⚡ by the FastJava Team**
+**Made with ⚡ and a String of sleepless nights by one guy who got tired of `OutOfMemoryError`**
 
 [GitHub](https://github.com/andrestubbe/faststring) • [Issues](https://github.com/andrestubbe/faststring/issues) • [JitPack](https://jitpack.io/#andrestubbe/faststring)
