@@ -18,13 +18,13 @@ namespace faststring {
 // ============================================================================
 
 FastString::FastString(int initialCapacity) 
-    : buffer(nullptr), bufSize(0), dataLen(0), charCount(0) {
+    : buffer(nullptr), bufSize(0), dataLen(0), charCount(0), simdOverride(0) {
     ensureCapacity(initialCapacity > 0 ? initialCapacity : FASTSTRING_INITIAL_CAPACITY);
     buffer[0] = '\0';
 }
 
 FastString::FastString(const char* utf8Data, size_t length)
-    : buffer(nullptr), bufSize(0), dataLen(0), charCount(-1) {
+    : buffer(nullptr), bufSize(0), dataLen(0), charCount(-1), simdOverride(0) {
     ensureCapacity(length + 1);
     memcpy(buffer, utf8Data, length);
     dataLen = length;
@@ -32,17 +32,18 @@ FastString::FastString(const char* utf8Data, size_t length)
 }
 
 FastString::FastString(const FastString& other)
-    : buffer(nullptr), bufSize(0), dataLen(other.dataLen), charCount(other.charCount) {
+    : buffer(nullptr), bufSize(0), dataLen(other.dataLen), charCount(other.charCount), simdOverride(other.simdOverride) {
     ensureCapacity(other.bufSize);
     memcpy(buffer, other.buffer, dataLen + 1);
 }
 
 FastString::FastString(FastString&& other) noexcept
-    : buffer(other.buffer), bufSize(other.bufSize), dataLen(other.dataLen), charCount(other.charCount) {
+    : buffer(other.buffer), bufSize(other.bufSize), dataLen(other.dataLen), charCount(other.charCount), simdOverride(other.simdOverride) {
     other.buffer = nullptr;
     other.bufSize = 0;
     other.dataLen = 0;
     other.charCount = 0;
+    other.simdOverride = 0;
 }
 
 FastString::~FastString() {
@@ -57,6 +58,7 @@ FastString& FastString::operator=(const FastString& other) {
         memcpy(buffer, other.buffer, other.dataLen + 1);
         dataLen = other.dataLen;
         charCount = other.charCount;
+        simdOverride = other.simdOverride;
     }
     return *this;
 }
@@ -68,10 +70,12 @@ FastString& FastString::operator=(FastString&& other) noexcept {
         bufSize = other.bufSize;
         dataLen = other.dataLen;
         charCount = other.charCount;
+        simdOverride = other.simdOverride;
         other.buffer = nullptr;
         other.bufSize = 0;
         other.dataLen = 0;
         other.charCount = 0;
+        other.simdOverride = 0;
     }
     return *this;
 }
@@ -593,6 +597,12 @@ bool FastString::hasAVX512() {
     return (cpuInfo[1] & (1 << 16)) != 0; // AVX-512F bit
 }
 
+void FastString::setSimdLevel(int level) {
+    // Store SIMD override level
+    // 0=AUTO (use runtime detection), 1=AVX2, 2=SSE4, 3=NONE (scalar)
+    simdOverride = level;
+}
+
 // UTF-8 Helpers
 size_t FastString::countUtf8Chars() const {
     size_t count = 0;
@@ -817,6 +827,14 @@ JNIEXPORT jobject JNICALL Java_faststring_FastString_appendBatch___3Ljava_lang_S
         }
     }
     return obj;
+}
+
+JNIEXPORT void JNICALL Java_faststring_FastString_nativeSetSimdLevel(JNIEnv* env, jobject obj, jlong handle, jint level) {
+    // SIMD level: 0=AUTO, 1=AVX2, 2=SSE4, 3=NONE
+    FastString* str = FastStringRegistry::getString(handle);
+    if (str) {
+        str->setSimdLevel(static_cast<int>(level));
+    }
 }
 
 JNIEXPORT jstring JNICALL Java_faststring_FastString_nativeToString(JNIEnv* env, jobject obj, jlong handle) {

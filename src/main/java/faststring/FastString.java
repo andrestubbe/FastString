@@ -58,6 +58,20 @@ public class FastString {
     private static final Cleaner cleaner = Cleaner.create();
     private final Cleaner.Cleanable cleanable;
     
+    // SIMD configuration (optional - auto-detected by default)
+    private SimdLevel simdLevel = SimdLevel.AUTO;
+    
+    /**
+     * SIMD acceleration levels.
+     * AUTO = detect best available (default)
+     * AVX2 = force AVX2 256-bit vectors
+     * SSE4 = force SSE4.2 128-bit vectors
+     * NONE = disable SIMD, use scalar fallback
+     */
+    public enum SimdLevel {
+        AUTO, AVX2, SSE4, NONE
+    }
+    
     /**
      * Creates an empty FastString with initial capacity.
      * 
@@ -275,6 +289,39 @@ public class FastString {
     public static FastString fromBuilder(StringBuilder sb) {
         return new FastString(sb.toString());
     }
+    
+    // ==================== CONFIGURATION (Optional) ====================
+    
+    /**
+     * Sets SIMD acceleration level.
+     * Default is AUTO (detects best available).
+     * 
+     * @param level AVX2, SSE4, NONE, or AUTO
+     * @return this FastString for fluent chaining
+     * 
+     * @example
+     * <pre>
+     * // Force SSE4 for compatibility
+     * FastString fs = new FastString().simd(SimdLevel.SSE4);
+     * 
+     * // Disable SIMD (pure scalar)
+     * FastString fs = new FastString().simd(SimdLevel.NONE);
+     * </pre>
+     */
+    public FastString simd(SimdLevel level) {
+        this.simdLevel = level;
+        nativeSetSimdLevel(nativeHandle, level.ordinal());
+        return this;
+    }
+    
+    /**
+     * Gets current SIMD level.
+     */
+    public SimdLevel getSimdLevel() {
+        return simdLevel;
+    }
+    
+    private native void nativeSetSimdLevel(long handle, int level);
     
     // ==================== RESOURCE MANAGEMENT ====================
     
