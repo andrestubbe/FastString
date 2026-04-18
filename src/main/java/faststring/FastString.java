@@ -139,10 +139,20 @@ public class FastString {
     public native FastString append(byte[] bytes);
     public native FastString append(FastString other);
     
-    // Batch append operations (single JNI call - much faster)
+    /**
+     * Batch append operations - single JNI call for multiple strings.
+     * 3-5x faster than individual append() calls by amortizing JNI overhead.
+     */
+    // Batch append - 2 strings
     public native FastString appendBatch(String s1, String s2);
+    
+    // Batch append - 3 strings
     public native FastString appendBatch(String s1, String s2, String s3);
+    
+    // Batch append - 4 strings  
     public native FastString appendBatch(String s1, String s2, String s3, String s4);
+    
+    // Batch append - variable array
     public native FastString appendBatch(String[] strings);
     
     // Fast substring (zero-copy - shares buffer)
@@ -178,8 +188,18 @@ public class FastString {
     
     // Buffer management
     public native void ensureCapacity(int minCapacity);
-    public native byte[] getBytes();              // Get raw UTF-8 bytes
-    public native byte[] getBytesFast();          // JNI Critical Section - 2-4x faster
+    /**
+     * Returns raw UTF-8 bytes.
+     * @return byte array containing UTF-8 encoded string
+     */
+    public native byte[] getBytes();
+    
+    /**
+     * Returns raw UTF-8 bytes using JNI Critical Sections.
+     * 2-4x faster than getBytes() for large arrays.
+     * @return byte array containing UTF-8 encoded string
+     */
+    public native byte[] getBytesFast();
     
     // ==================== JAVA-SIDE METHODS ====================
     
@@ -299,15 +319,6 @@ public class FastString {
      * 
      * @param level AVX2, SSE4, NONE, or AUTO
      * @return this FastString for fluent chaining
-     * 
-     * @example
-     * <pre>
-     * // Force SSE4 for compatibility
-     * FastString fs = new FastString().simd(SimdLevel.SSE4);
-     * 
-     * // Disable SIMD (pure scalar)
-     * FastString fs = new FastString().simd(SimdLevel.NONE);
-     * </pre>
      */
     public FastString simd(SimdLevel level) {
         this.simdLevel = level;
