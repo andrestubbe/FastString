@@ -1,0 +1,47 @@
+# Build outputs
+target/
+build/
+*.dll
+*.so
+*.dylib
+*.class
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Maven
+.mvn/
+dependency-reduced-pom.xml
+
+# Java
+*.jar
+*.war
+*.ear
+
+# Native compilation
+*.obj
+*.o
+*.pdb
+*.ilk
+*.exp
+*.lib
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Test outputs
+/test-results/
+/benchmark-results/
