@@ -335,12 +335,6 @@ mvn test -Dtest=FastStringTest
 
 ---
 
-## 🤝 Contributing
-
-Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
----
-
 ## 📜 License
 
 MIT License — see [LICENSE](LICENSE) file.
