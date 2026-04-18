@@ -324,5 +324,3 @@ MIT License — see [LICENSE](LICENSE) file.
 ---
 
 **Made with ⚡ and a String of sleepless nights by one guy who got tired of `OutOfMemoryError`**
-
-[GitHub](https://github.com/andrestubbe/faststring) • [Issues](https://github.com/andrestubbe/faststring/issues) • [JitPack](https://jitpack.io/#andrestubbe/faststring)
