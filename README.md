@@ -289,15 +289,9 @@ byte[] bytes = fs.getBytes();
 
 ---
 
-## 🛠️ Building from Source
+## Build from Source
 
-See [COMPILE.md](COMPILE.md) for complete build instructions.
-
-Quick start:
-```bash
-compile.bat
-mvn clean package
-```
+See [COMPILE.md](COMPILE.md) for detailed build instructions.
 
 ---
 
