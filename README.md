@@ -1,4 +1,4 @@
-# FastString — High-performance UTF-8 string operations for Java
+# FastString — High-performance UTF-8 string operations for Java [ALPHA]
 
 > ⚡ **10-100× faster** than Java String | **50% less memory** | **Zero-copy operations**
 
