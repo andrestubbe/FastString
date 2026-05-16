@@ -7,7 +7,7 @@
 
     <groupId>io.github.andrestubbe</groupId>
     <artifactId>faststring</artifactId>
-    <version>0.1.0</version>
+    <version>v0.1.0</version>
     <packaging>jar</packaging>
 
     <name>FastString</name>
