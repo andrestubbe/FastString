@@ -1,6 +1,6 @@
 # FastString — High-performance SIMD UTF-8 String for Java v0.1.0
 
-**Mutable, zero-allocation UTF-8 string implementation with SIMD-accelerated operations.**
+**Mutable, zero-allocation UTF-8 string implementation with SIMD-accelerated operations. Bypasses Java String overhead for elite performance.**
 
 [![Build](https://img.shields.io/github/actions/workflow/status/andrestubbe/FastString/maven.yml?branch=main)](https://github.com/andrestubbe/FastString/actions)
 [![Java](https://img.shields.io/badge/Java-17+-blue.svg)](https://www.java.com)
@@ -10,7 +10,7 @@
 
 ---
 
-FastString replaces standard Java `String` for high-frequency processing, bypassing UTF-16 overhead and garbage collection pressure.
+**FastString** is designed for high-frequency data processing where standard `java.lang.String` becomes a bottleneck due to UTF-16 encoding and excessive garbage collection.
 
 ```java
 // Quick Start — Example
@@ -18,8 +18,9 @@ import faststring.FastString;
 
 public class Demo {
     public static void main(String[] args) {
-        FastString s = new FastString("Hello FastJava!");
-        s.toUpperCase(); // Native SIMD accelerated
+        // FastString works directly with UTF-8 bytes
+        FastString s = new FastString("High Performance!");
+        s.toUpperCase(); // Native SIMD accelerated (AVX2)
         System.out.println(s);
     }
 }
@@ -27,18 +28,44 @@ public class Demo {
 
 ---
 
+## Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+- [License](#license)
+- [Related Projects](#related-projects)
+
+---
+
+## Features
+- **⚡ UTF-8 Native**: No conversion overhead between network/file bytes and the JVM.
+- **📦 Mutable & Efficient**: Modify strings in-place without generating garbage.
+- **🚀 SIMD Accelerated**: AVX2/SSE optimized for searching, case-conversion, and validation.
+- **🛠️ Zero Allocation**: Designed for 120 FPS UI and high-throughput backend services.
+
+---
+
 ## Installation
 
-FastString requires `FastCore` for native library loading.
+FastString requires **FastCore** (the unified native loader) to function.
 
 ### Maven (JitPack)
 ```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
 <dependencies>
+    <!-- FastString Module -->
     <dependency>
         <groupId>io.github.andrestubbe</groupId>
         <artifactId>faststring</artifactId>
         <version>0.1.0</version>
     </dependency>
+
+    <!-- FastCore (Mandatory Native Loader) -->
     <dependency>
         <groupId>com.github.andrestubbe</groupId>
         <artifactId>fastcore</artifactId>
@@ -47,10 +74,29 @@ FastString requires `FastCore` for native library loading.
 </dependencies>
 ```
 
+### Gradle (JitPack)
+```groovy
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'io.github.andrestubbe:faststring:0.1.0'
+    implementation 'com.github.andrestubbe:fastcore:0.1.0'
+}
+```
+
 ---
 
 ## License
 MIT License — See [LICENSE](LICENSE) for details.
+
+---
+
+## Related Projects
+- [FastCore](https://github.com/andrestubbe/FastCore) — Native Library Loader
+- [FastBytes](https://github.com/andrestubbe/FastBytes) — SIMD-accelerated Byte Operations
+- [FastJSON](https://github.com/andrestubbe/FastJSON) — High-speed JSON parsing
 
 ---
 **Made with ⚡ by Andre Stubbe**
