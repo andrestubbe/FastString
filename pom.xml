@@ -5,9 +5,11 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.andrestubbe</groupId>
-    <artifactId>faststring</artifactId>
-    <version>v0.1.0</version>
+    <groupId>com.github.andrestubbe</groupId>
+            <artifactId>faststring</artifactId>
+           <version>0.1.0</version>
+     <version>0.1.0</version>
+     <version>0.1.0</version>
     <packaging>jar</packaging>
 
     <name>FastString</name>
@@ -54,7 +56,7 @@
         <dependency>
             <groupId>com.github.andrestubbe</groupId>
             <artifactId>fastcore</artifactId>
-            <version>v0.1.0</version>
+            <version>0.1.0</version>
         </dependency>
         
         <!-- JUnit 5 for testing -->

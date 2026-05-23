@@ -1,5 +1,4 @@
-# FastString — High-performance SIMD UTF-8 String for Java v0.1.0
-
+# FastString — High-performance SIMD UTF-8 String for Java v0.1.0 [ALPHA] - v0.1.0
 **Mutable, zero-allocation UTF-8 string implementation with SIMD-accelerated operations. Bypasses Java String overhead for elite performance.**
 
 [![Build](https://img.shields.io/github/actions/workflow/status/andrestubbe/FastString/maven.yml?branch=main)](https://github.com/andrestubbe/FastString/actions)
@@ -100,3 +99,4 @@ MIT License — See [LICENSE](LICENSE) for details.
 
 ---
 **Made with ⚡ by Andre Stubbe**
+
