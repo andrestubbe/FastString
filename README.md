@@ -1,4 +1,4 @@
-﻿# FastString â€” High-performance SIMD UTF-8 String for Java v0.1.0 [ALPHA] - v0.1.0
+﻿# FastString — High-performance SIMD UTF-8 String for Java v0.1.0 [ALPHA] - v0.1.0
 **Mutable, zero-allocation UTF-8 string implementation with SIMD-accelerated operations. Bypasses Java String overhead for elite performance.**
 
 [![Build](https://img.shields.io/github/actions/workflow/status/andrestubbe/FastString/maven.yml?branch=main)](https://github.com/andrestubbe/FastString/actions)
@@ -12,7 +12,7 @@
 **FastString** is designed for high-frequency data processing where standard `java.lang.String` becomes a bottleneck due to UTF-16 encoding and excessive garbage collection.
 
 ```java
-// Quick Start â€” Example
+// Quick Start — Example
 import faststring.FastString;
 
 public class Demo {
@@ -36,10 +36,10 @@ public class Demo {
 ---
 
 ## Features
-- **âš¡ UTF-8 Native**: No conversion overhead between network/file bytes and the JVM.
-- **ðŸ“¦ Mutable & Efficient**: Modify strings in-place without generating garbage.
-- **ðŸš€ SIMD Accelerated**: AVX2/SSE optimized for searching, case-conversion, and validation.
-- **ðŸ› ï¸ Zero Allocation**: Designed for 120 FPS UI and high-throughput backend services.
+- **⚡ UTF-8 Native**: No conversion overhead between network/file bytes and the JVM.
+- **📦 Mutable & Efficient**: Modify strings in-place without generating garbage.
+- **🚀 SIMD Accelerated**: AVX2/SSE optimized for searching, case-conversion, and validation.
+- **🛠️ Zero Allocation**: Designed for 120 FPS UI and high-throughput backend services.
 
 ---
 
@@ -96,15 +96,15 @@ Download the latest JARs directly to add them to your classpath:
 
 
 ## License
-MIT License â€” See [LICENSE](LICENSE) for details.
+MIT License — See [LICENSE](LICENSE) for details.
 
 ---
 
 ## Related Projects
-- [FastCore](https://github.com/andrestubbe/FastCore) â€” Native Library Loader
-- [FastBytes](https://github.com/andrestubbe/FastBytes) â€” SIMD-accelerated Byte Operations
-- [FastJSON](https://github.com/andrestubbe/FastJSON) â€” High-speed JSON parsing
+- [FastCore](https://github.com/andrestubbe/FastCore) — Native Library Loader
+- [FastBytes](https://github.com/andrestubbe/FastBytes) — SIMD-accelerated Byte Operations
+- [FastJSON](https://github.com/andrestubbe/FastJSON) — High-speed JSON parsing
 
 ---
-**Made with âš¡ by Andre Stubbe**
+**Made with ⚡ by Andre Stubbe**
 
