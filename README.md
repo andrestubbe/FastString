@@ -45,10 +45,10 @@ public class Demo {
 
 ## Installation
 
-FastString requires **FastCore** (the unified native loader) to function.
+### Option 1: Maven (Recommended)
+Add the JitPack repository and the dependencies to your `pom.xml`:
 
-### Maven (JitPack)
-```xml
+`xml
 <repositories>
     <repository>
         <id>jitpack.io</id>
@@ -57,35 +57,42 @@ FastString requires **FastCore** (the unified native loader) to function.
 </repositories>
 
 <dependencies>
-    <!-- FastString Module -->
+    <!-- FastString Library -->
     <dependency>
-        <groupId>io.github.andrestubbe</groupId>
+        <groupId>com.github.andrestubbe</groupId>
         <artifactId>faststring</artifactId>
-        <version>0.1.0</version>
+        <version>v0.1.0</version>
     </dependency>
-
-    <!-- FastCore (Mandatory Native Loader) -->
+    <!-- FastCore (Required Native Loader) -->
     <dependency>
         <groupId>com.github.andrestubbe</groupId>
         <artifactId>fastcore</artifactId>
-        <version>0.1.0</version>
+        <version>v0.1.0</version>
     </dependency>
 </dependencies>
-```
+`
 
-### Gradle (JitPack)
-```groovy
+### Option 2: Gradle (via JitPack)
+`groovy
 repositories {
     maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-    implementation 'io.github.andrestubbe:faststring:0.1.0'
-    implementation 'com.github.andrestubbe:fastcore:0.1.0'
+    implementation 'com.github.andrestubbe:.1.0'
+    implementation 'com.github.andrestubbe:fastcore:v0.1.0'
 }
-```
+`
 
----
+### Option 3: Direct Download (No Build Tool)
+Download the latest JARs directly to add them to your classpath:
+
+1. 📦 **[faststring-v0.1.0.jar](https://github.com/andrestubbe/FastString/releases/download/v0.1.0/faststring-v0.1.0.jar)** (The Core Library)
+2. ⚙️ **[fastcore-v0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/v0.1.0/fastcore-v0.1.0.jar)** (The Mandatory Native Loader)
+
+> [!IMPORTANT]
+> All JARs must be in your classpath for the native JNI calls to function correctly.
+
 
 ## License
 MIT License — See [LICENSE](LICENSE) for details.
