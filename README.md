@@ -16,9 +16,18 @@ to UTF-16 encoding and excessive garbage collection.
 
 ---
 
-```java
-// Quick Start — Example
+## Table of Contents
 
+- [Features](#features)
+- [Installation](#installation)
+- [License](#license)
+- [Related Projects](#related-projects)
+
+---
+
+## Quick Start
+
+```java
 import faststring.FastString;
 
 public class Demo {
@@ -30,15 +39,6 @@ public class Demo {
     }
 }
 ```
-
----
-
-## Table of Contents
-
-- [Features](#features)
-- [Installation](#installation)
-- [License](#license)
-- [Related Projects](#related-projects)
 
 ---
 
