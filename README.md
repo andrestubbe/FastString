@@ -1,6 +1,6 @@
-﻿# FastString v0.1.0 [ALPHA] — High-performance SIMD UTF-8 String for Java
+﻿# FastString 0.1.0 [ALPHA] — High-performance SIMD UTF-8 String for Java
 
-[![Status](https://img.shields.io/badge/status-v0.1.0-brightgreen.svg)](https://github.com/andrestubbe/FastString/releases/tag/v0.1.0)
+[![Status](https://img.shields.io/badge/status-0.1.0-brightgreen.svg)](https://github.com/andrestubbe/FastString/releases/tag/0.1.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java](https://img.shields.io/badge/Java-17+-blue.svg)](https://www.java.com)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010+-lightgrey.svg)]()
@@ -72,12 +72,12 @@ Add the JitPack repository and the dependencies to your `pom.xml`:
    <dependency>
        <groupId>com.github.andrestubbe</groupId>
        <artifactId>faststring</artifactId>
-       <version>v0.1.0</version>
+       <version>0.1.0</version>
    </dependency>
    <dependency>
        <groupId>com.github.andrestubbe</groupId>
        <artifactId>fastcore</artifactId>
-       <version>v0.1.0</version>
+       <version>0.1.0</version>
    </dependency>
 </dependencies>
 ```
@@ -89,8 +89,8 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 dependencies {
-    implementation 'com.github.andrestubbe:faststring:v0.1.0'
-    implementation 'com.github.andrestubbe:fastcore:v0.1.0'
+    implementation 'com.github.andrestubbe:faststring:0.1.0'
+    implementation 'com.github.andrestubbe:fastcore:0.1.0'
 }
 ```
 
@@ -98,9 +98,9 @@ dependencies {
 
 Download the latest JARs directly to add them to your classpath:
 
-1. 📦 **[faststring-v0.1.0.jar](https://github.com/andrestubbe/FastString/releases/download/v0.1.0/faststring-v0.1.0.jar)
+1. 📦 **[faststring-0.1.0.jar](https://github.com/andrestubbe/FastString/releases/download/0.1.0/faststring-0.1.0.jar)
    ** (The Core Library)
-2. ⚙️ **[fastcore-v0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/v0.1.0/fastcore-v0.1.0.jar)** (
+2. ⚙️ **[fastcore-0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/0.1.0/fastcore-0.1.0.jar)** (
    The Mandatory Native Loader)
 
 ---
@@ -114,7 +114,7 @@ MIT License — See [LICENSE](LICENSE) file for details.
 ## Related Projects
 
 - [FastCore](https://github.com/andrestubbe/FastCore) — Native Library Loader for Java
-- [FastKeyboard](https://github.com/andrestubbe/FastKeyboard) — High-performance RawInput engine
+- [FastString](https://github.com/andrestubbe/FastString) — High-performance RawInput engine
 - [FastTheme](https://github.com/andrestubbe/FastTheme) — Advanced UI styling engine
 
 ---
