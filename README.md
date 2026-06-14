@@ -1,4 +1,4 @@
-# FastString 0.1.0 [ALPHA-2026-06] — � High-performance SIMD UTF-8 String for Java
+﻿# FastString 0.1.0 [ALPHA] — High-performance SIMD UTF-8 String for Java
 
 [![Status](https://img.shields.io/badge/status-0.1.0-brightgreen.svg)](https://github.com/andrestubbe/FastString/releases/tag/0.1.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -8,7 +8,7 @@
 
 ---
 
-**? Mutable, zero-allocation UTF-8 string implementation with SIMD-accelerated operations. Bypasses Java String overhead
+**⚡ Mutable, zero-allocation UTF-8 string implementation with SIMD-accelerated operations. Bypasses Java String overhead
 for elite performance.**
 
 **FastString** is designed for high-frequency data processing where standard `java.lang.String` becomes a bottleneck due
@@ -48,10 +48,10 @@ public class Demo {
 
 ## Features
 
-- **? UTF-8 Native**: No conversion overhead between network/file bytes and the JVM.
-- **?? Mutable & Efficient**: Modify strings in-place without generating garbage.
-- **?? SIMD Accelerated**: AVX2/SSE optimized for searching, case-conversion, and validation.
-- **??? Zero Allocation**: Designed for 120 FPS UI and high-throughput backend services.
+- **⚡ UTF-8 Native**: No conversion overhead between network/file bytes and the JVM.
+- **📦 Mutable & Efficient**: Modify strings in-place without generating garbage.
+- **🚀 SIMD Accelerated**: AVX2/SSE optimized for searching, case-conversion, and validation.
+- **🛠️ Zero Allocation**: Designed for 120 FPS UI and high-throughput backend services.
 
 ---
 
@@ -98,27 +98,27 @@ dependencies {
 
 Download the latest JARs directly to add them to your classpath:
 
-1. ?? **[faststring-0.1.0.jar](https://github.com/andrestubbe/FastString/releases/download/0.1.0/faststring-0.1.0.jar)
+1. 📦 **[faststring-0.1.0.jar](https://github.com/andrestubbe/FastString/releases/download/0.1.0/faststring-0.1.0.jar)
    ** (The Core Library)
-2. ?? **[fastcore-0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/0.1.0/fastcore-0.1.0.jar)** (
+2. ⚙️ **[fastcore-0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/0.1.0/fastcore-0.1.0.jar)** (
    The Mandatory Native Loader)
 
 ---
 
 ## License
 
-MIT License � See [LICENSE](LICENSE) file for details.
+MIT License — See [LICENSE](LICENSE) file for details.
 
 ---
 
 ## Related Projects
 
-- [FastCore](https://github.com/andrestubbe/FastCore) � Native Library Loader for Java
-- [FastString](https://github.com/andrestubbe/FastString) � High-performance RawInput engine
-- [FastTheme](https://github.com/andrestubbe/FastTheme) � Advanced UI styling engine
+- [FastCore](https://github.com/andrestubbe/FastCore) — Native Library Loader for Java
+- [FastString](https://github.com/andrestubbe/FastString) — High-performance RawInput engine
+- [FastTheme](https://github.com/andrestubbe/FastTheme) — Advanced UI styling engine
 
 ---
-**Part of the FastJava Ecosystem** � *Making the JVM faster. Small package. Maximum speed. Zero bloat. ????*
+**Part of the FastJava Ecosystem** — *Making the JVM faster. Small package. Maximum speed. Zero bloat. 🚀📋*
 
 
 
