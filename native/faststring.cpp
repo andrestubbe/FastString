@@ -868,6 +868,11 @@ JNIEXPORT jbyteArray JNICALL Java_faststring_FastString_getBytesFast(JNIEnv* env
     return Java_faststring_FastString_nativeGetBytesCritical(env, obj, handle);
 }
 
+// getBytes JNI wrapper
+JNIEXPORT jbyteArray JNICALL Java_faststring_FastString_getBytes(JNIEnv* env, jobject obj) {
+    return Java_faststring_FastString_getBytesFast(env, obj);
+}
+
 // DLL entry point
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
     switch (ul_reason_for_call) {

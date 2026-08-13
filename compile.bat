@@ -8,7 +8,9 @@ echo.
 
 :: Check for Java
 if not defined JAVA_HOME (
-    if exist "C:\Program Files\Java\jdk-25" (
+    if exist "C:\Program Files\Java\jdk-21.0.12" (
+        set "JAVA_HOME=C:\Program Files\Java\jdk-21.0.12"
+    ) else if exist "C:\Program Files\Java\jdk-25" (
         set "JAVA_HOME=C:\Program Files\Java\jdk-25"
     ) else if exist "C:\Program Files\Java\jdk-17" (
         set "JAVA_HOME=C:\Program Files\Java\jdk-17"
