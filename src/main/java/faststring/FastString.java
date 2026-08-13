@@ -46,7 +46,7 @@ public class FastString {
         // Load native library via FastCore
         FastCore.loadLibrary("faststring");
     }
-    
+
     // Native handle to C++ FastString instance
     private final long nativeHandle;
     

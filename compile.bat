@@ -81,6 +81,7 @@ cl /LD /Fe:build\faststring.dll ^
     native\faststring.cpp ^
     /I"%JAVA_HOME%\include" ^
     /I"%JAVA_HOME%\include\win32" ^
+    /I"..\FastSIMD\native" ^
     /EHsc /std:c++17 /O2 /W3 /arch:AVX2
 
 :: Check result

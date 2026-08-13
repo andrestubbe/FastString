@@ -1,4 +1,5 @@
 #include "faststring.h"
+#include "fastsimd.h"
 #include <windows.h>
 #include <intrin.h>
 #include <cstring>
@@ -835,6 +836,108 @@ JNIEXPORT void JNICALL Java_faststring_FastString_nativeSetSimdLevel(JNIEnv* env
     if (str) {
         str->setSimdLevel(static_cast<int>(level));
     }
+}
+
+JNIEXPORT jint JNICALL Java_faststring_FastString_indexOf__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring target) {
+    if (!target) return -1;
+    jclass cls = env->GetObjectClass(obj);
+    jfieldID field = env->GetFieldID(cls, "nativeHandle", "J");
+    jlong handle = env->GetLongField(obj, field);
+    FastString* str = FastStringRegistry::getString(handle);
+    if (!str) return -1;
+    
+    const char* utf8 = env->GetStringUTFChars(target, nullptr);
+    size_t pos = str->indexOf(utf8, 0);
+    env->ReleaseStringUTFChars(target, utf8);
+    return (pos == (size_t)-1) ? -1 : (jint)pos;
+}
+
+JNIEXPORT jint JNICALL Java_faststring_FastString_indexOf__Ljava_lang_String_2I(JNIEnv* env, jobject obj, jstring target, jint fromIndex) {
+    if (!target) return -1;
+    jclass cls = env->GetObjectClass(obj);
+    jfieldID field = env->GetFieldID(cls, "nativeHandle", "J");
+    jlong handle = env->GetLongField(obj, field);
+    FastString* str = FastStringRegistry::getString(handle);
+    if (!str) return -1;
+    
+    const char* utf8 = env->GetStringUTFChars(target, nullptr);
+    size_t pos = str->indexOf(utf8, (size_t)(fromIndex >= 0 ? fromIndex : 0));
+    env->ReleaseStringUTFChars(target, utf8);
+    return (pos == (size_t)-1) ? -1 : (jint)pos;
+}
+
+JNIEXPORT jint JNICALL Java_faststring_FastString_lastIndexOf__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring target) {
+    if (!target) return -1;
+    jclass cls = env->GetObjectClass(obj);
+    jfieldID field = env->GetFieldID(cls, "nativeHandle", "J");
+    jlong handle = env->GetLongField(obj, field);
+    FastString* str = FastStringRegistry::getString(handle);
+    if (!str) return -1;
+    
+    const char* utf8 = env->GetStringUTFChars(target, nullptr);
+    size_t pos = str->lastIndexOf(utf8);
+    env->ReleaseStringUTFChars(target, utf8);
+    return (pos == (size_t)-1) ? -1 : (jint)pos;
+}
+
+JNIEXPORT jboolean JNICALL Java_faststring_FastString_contains__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring target) {
+    return Java_faststring_FastString_indexOf__Ljava_lang_String_2(env, obj, target) != -1 ? JNI_TRUE : JNI_FALSE;
+}
+
+JNIEXPORT jboolean JNICALL Java_faststring_FastString_startsWith__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring prefix) {
+    if (!prefix) return JNI_FALSE;
+    jclass cls = env->GetObjectClass(obj);
+    jfieldID field = env->GetFieldID(cls, "nativeHandle", "J");
+    jlong handle = env->GetLongField(obj, field);
+    FastString* str = FastStringRegistry::getString(handle);
+    if (!str) return JNI_FALSE;
+    
+    const char* utf8 = env->GetStringUTFChars(prefix, nullptr);
+    bool res = str->startsWith(utf8);
+    env->ReleaseStringUTFChars(prefix, utf8);
+    return res ? JNI_TRUE : JNI_FALSE;
+}
+
+JNIEXPORT jboolean JNICALL Java_faststring_FastString_endsWith__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring suffix) {
+    if (!suffix) return JNI_FALSE;
+    jclass cls = env->GetObjectClass(obj);
+    jfieldID field = env->GetFieldID(cls, "nativeHandle", "J");
+    jlong handle = env->GetLongField(obj, field);
+    FastString* str = FastStringRegistry::getString(handle);
+    if (!str) return JNI_FALSE;
+    
+    const char* utf8 = env->GetStringUTFChars(suffix, nullptr);
+    bool res = str->endsWith(utf8);
+    env->ReleaseStringUTFChars(suffix, utf8);
+    return res ? JNI_TRUE : JNI_FALSE;
+}
+
+JNIEXPORT jobject JNICALL Java_faststring_FastString_substring__I(JNIEnv* env, jobject obj, jint beginIndex) {
+    jclass cls = env->GetObjectClass(obj);
+    jfieldID field = env->GetFieldID(cls, "nativeHandle", "J");
+    jlong handle = env->GetLongField(obj, field);
+    FastString* str = FastStringRegistry::getString(handle);
+    if (!str) return nullptr;
+    
+    FastString sub = str->substring((size_t)(beginIndex >= 0 ? beginIndex : 0));
+    jclass fsClass = env->FindClass("faststring/FastString");
+    jmethodID ctor = env->GetMethodID(fsClass, "<init>", "(Ljava/lang/String;)V");
+    jstring jstr = sub.toJString(env);
+    return env->NewObject(fsClass, ctor, jstr);
+}
+
+JNIEXPORT jobject JNICALL Java_faststring_FastString_substring__II(JNIEnv* env, jobject obj, jint beginIndex, jint endIndex) {
+    jclass cls = env->GetObjectClass(obj);
+    jfieldID field = env->GetFieldID(cls, "nativeHandle", "J");
+    jlong handle = env->GetLongField(obj, field);
+    FastString* str = FastStringRegistry::getString(handle);
+    if (!str) return nullptr;
+    
+    FastString sub = str->substring((size_t)(beginIndex >= 0 ? beginIndex : 0), (size_t)(endIndex >= beginIndex ? endIndex : beginIndex));
+    jclass fsClass = env->FindClass("faststring/FastString");
+    jmethodID ctor = env->GetMethodID(fsClass, "<init>", "(Ljava/lang/String;)V");
+    jstring jstr = sub.toJString(env);
+    return env->NewObject(fsClass, ctor, jstr);
 }
 
 // JNI Critical Section optimized getBytes - 2-4x faster for large arrays
