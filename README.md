@@ -165,6 +165,8 @@ run-benchmark.bat
 
 ## Documentation
 
+* 🗺️ **[ROADMAP.md](docs/ROADMAP.md)** — Feature roadmap and future releases.
+
 * 📖 **[PHILOSOPHY.md](docs/PHILOSOPHY.md)** — Architectural principles and zero-copy contracts.
 * 🛠️ **[COMPILE.md](docs/COMPILE.md)** — Native C++ compilation guide using MSVC.
 * 📚 **[REFERENCE.md](docs/REFERENCE.md)** — API details and hardware vector specifications.
