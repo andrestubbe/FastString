@@ -72,12 +72,12 @@ Add the JitPack repository and the dependencies to your `pom.xml`:
    <dependency>
        <groupId>com.github.andrestubbe</groupId>
        <artifactId>faststring</artifactId>
-       <version>0.1.0</version>
+       <version>0.1.1</version>
    </dependency>
    <dependency>
        <groupId>com.github.andrestubbe</groupId>
        <artifactId>fastcore</artifactId>
-       <version>0.1.0</version>
+       <version>0.1.1</version>
    </dependency>
 </dependencies>
 ```

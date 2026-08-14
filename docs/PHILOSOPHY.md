@@ -1,9 +1,9 @@
-# The Philosophy of FastXXX
+# The Philosophy of FastString
 
 > [!IMPORTANT]
-> **"Keine Kopien. Niemals. Kritischer JNI-Pfad. Native-First Performance."**
+> **"No copies. Ever. Critical JNI path. Native-First Performance."**
 
-FastXXX is built on the principle that modern Java applications require **native-first** acceleration for performance-critical operations that the standard JVM APIs don't fully optimize.
+FastString is built on the principle that modern Java applications require **native-first** acceleration for performance-critical operations that the standard JVM APIs don't fully optimize.
 
 ## Core Tenets
 
@@ -20,10 +20,10 @@ FastXXX is built on the principle that modern Java applications require **native
     Leverage modern CPU features (AVX, SSE, NEON) to process data at hardware-native speeds.
 
 5.  **Blueprint Consistency**
-    As part of the **FastJava** ecosystem, FastXXX adheres to a standardized architecture:
+    As part of the **FastJava** ecosystem, FastString adheres to a standardized architecture:
     *   **Native Backend**: Direct C++ implementation.
     *   **Unified Loading**: Powered by `FastCore`.
     *   **Premium Quality**: Built for high-performance systems and autonomous agents.
 
 ---
-**⚡ FastXXX — Powering the next generation of Native Java.**
+**⚡ FastString — Powering the next generation of Native Java.**
