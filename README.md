@@ -16,7 +16,7 @@
 
 ---
 
-## Quick Start — Example
+## Quick Start
 
 ```java
 import faststring.FastString;
@@ -41,7 +41,7 @@ public class Demo {
 
 ## Table of Contents
 
-- [Quick Start — Example](#quick-start--example)
+- [Quick Start](#quick-start)
 - [Key Features](#key-features)
 - [Installation](#installation)
 - [Technical Examples & Benchmarks](#technical-examples--benchmarks)
