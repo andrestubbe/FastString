@@ -86,7 +86,7 @@ Add the JitPack repository and the dependencies to your `pom.xml`:
     <dependency>
         <groupId>com.github.andrestubbe</groupId>
         <artifactId>FastSIMD</artifactId>
-        <version>0.1.2</version>
+        <version>0.1.3</version>
     </dependency>
 
     <!-- FastMemory Aligned Allocator -->
@@ -121,7 +121,7 @@ repositories {
 
 dependencies {
     implementation 'com.github.andrestubbe:FastString:0.1.1'
-    implementation 'com.github.andrestubbe:FastSIMD:0.1.2'
+    implementation 'com.github.andrestubbe:FastSIMD:0.1.3'
     implementation 'com.github.andrestubbe:FastMemory:0.1.1'
     implementation 'com.github.andrestubbe:FastPointer:0.1.1'
     implementation 'com.github.andrestubbe:FastCore:0.1.0'
@@ -133,7 +133,7 @@ dependencies {
 Download the latest JARs directly to add them to your classpath:
 
 1. 🚀 **[FastString-0.1.1.jar](https://github.com/andrestubbe/FastString/releases/download/0.1.1/FastString-0.1.1.jar)** (Core Library)
-2. ⚡ **[FastSIMD-0.1.2.jar](https://github.com/andrestubbe/FastSIMD/releases/download/0.1.2/FastSIMD-0.1.2.jar)** (Hardware Vector Engine)
+2. ⚡ **[FastSIMD-0.1.3.jar](https://github.com/andrestubbe/FastSIMD/releases/download/0.1.3/FastSIMD-0.1.3.jar)** (Hardware Vector Engine)
 3. 💾 **[FastMemory-0.1.1.jar](https://github.com/andrestubbe/FastMemory/releases/download/0.1.1/FastMemory-0.1.1.jar)** (32-Byte Aligned Allocator)
 4. 📍 **[FastPointer-0.1.1.jar](https://github.com/andrestubbe/FastPointer/releases/download/0.1.1/FastPointer-0.1.1.jar)** (Native Primitive Pointer)
 5. ⚙️ **[fastcore-0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/0.1.0/fastcore-0.1.0.jar)** (Mandatory Native Loader)
