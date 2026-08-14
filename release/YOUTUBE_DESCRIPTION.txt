@@ -1,0 +1,31 @@
+TITLE:
+FastString: Ultra-Fast SIMD Native UTF-8 String Engine for Java 🚀
+
+DESCRIPTION:
+Demonstrating FastString, the zero-copy, SIMD-accelerated mutable UTF-8 string engine for Java. Powered by the FastSIMD vector engine, FastString accelerates pattern searching (indexOf), zero-copy substring slicing, and case conversions at up to 10x-50x faster than java.lang.String without GC allocation pressure.
+
+TECHNICAL HIGHLIGHTS:
+- FastSIMD Hardware Vector Engine: 32-byte parallel quote/pattern scanning (indexOf) via native AVX2 intrinsics.
+- Zero-Copy UTF-8 Substring Slicing: Shared buffer views eliminate heap object allocations during string manipulation.
+- In-Place Mutation: Mutable character manipulation for high-frequency logs and API request streams.
+- Official JMH Suite: Standardized benchmark Uber-JAR executable via run-benchmark.bat.
+
+RESULTS:
+- Pattern Search: 10x-50x speedup over java.lang.String.indexOf()
+- Substring Slicing: Zero-copy execution with 0 bytes GC heap allocation
+- JMH Throughput: 800,000+ ops/sec in pattern matching benchmarks
+
+FASTJAVA CORE REPOSITORIES:
+1. FastString: https://github.com/andrestubbe/FastString
+2. FastSIMD: https://github.com/andrestubbe/FastSIMD
+3. FastMemory: https://github.com/andrestubbe/FastMemory
+4. FastPointer: https://github.com/andrestubbe/FastPointer
+5. FastCore: https://github.com/andrestubbe/FastCore
+
+Ecosystem Overview: https://github.com/andrestubbe/FastJava
+
+Part of the FastJava Ecosystem — Making the JVM faster.
+Made with ⚡ by Andre Stubbe
+
+TAGS:
+Java, FastJava, FastString, FastSIMD, UTF-8, High Performance, Zero Copy, C++, JNI, JMH Benchmark
