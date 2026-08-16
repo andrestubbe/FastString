@@ -16,6 +16,21 @@
 
 ---
 
+---
+
+## FastJava Native Memory & Hardware Substrate
+
+`FastString` is part of the **FastJava Low-Level Native Memory Substrate** — a suite of modules designed to give Java applications raw C++ speed and direct hardware access:
+
+| Substrate Module | Role & Key Capability |
+|---|---|
+| **[`FastSharedMemory`](https://github.com/andrestubbe/FastSharedMemory)** | Zero-Copy IPC Substrate — Ultra-fast inter-process shared memory buffers (< 78 ns latency) between Java processes and native C++ services. |
+| **[`FastPointer`](https://github.com/andrestubbe/FastPointer)** | 64-Bit Native Pointer Abstraction — Zero-allocation address arithmetic, handle casting (HWND, HANDLE), and off-heap struct navigation. |
+| **[`FastMemory`](https://github.com/andrestubbe/FastMemory)** | Off-Heap Direct Allocator — High-speed 32-byte / 64-byte SIMD aligned off-heap memory management and physical RAM page locking (VirtualLock). |
+| **[`FastSIMD`](https://github.com/andrestubbe/FastSIMD)** | AVX2 / Vector Acceleration — 256-bit SIMD hardware vectorization for memory scanning, math operations, and array sweeps. |
+| **[`FastBytes`](https://github.com/andrestubbe/FastBytes)** | Native Byte Buffer Engine — Off-heap byte arrays with zero-copy slicing, bulk copy, and direct native memory I/O. |
+
+
 ## Quick Start
 
 ```java
@@ -41,15 +56,27 @@ public class Demo {
 
 ## Table of Contents
 
-- [Quick Start](#quick-start)
+- [Why FastString?](#why-faststring)
 - [Key Features](#key-features)
 - [Real-World Use Cases](#real-world-use-cases)
 - [Performance Benchmarks](#performance-benchmarks)
+- [FastJava Native Memory Substrate](#fastjava-native-memory--hardware-substrate)
+- [Quick Start](#quick-start)
 - [Installation](#installation)
 - [Technical Examples & Benchmarks](#technical-examples--benchmarks)
 - [Documentation](#documentation)
 - [Related Projects](#related-projects)
 - [License](#license)
+
+---
+
+## Why FastString?
+
+Standard `java.lang.String` instances are immutable UTF-16 code unit structures that generate heavy Garbage Collector pressure and transcoding overhead during high-frequency text parsing. `FastString` provides:
+
+- **Zero-Copy UTF-8 Native Substrate** — Operates directly on raw UTF-8 byte streams, eliminating UTF-16 to UTF-8 decoding overhead when reading files and network payloads.
+- **Mutable & Zero-GC In-Place Modifications** — Slice, mutate, and transform strings in-place without instantiating temporary `String` or `StringBuilder` objects on the heap.
+- **SIMD AVX2 Substring Sweeps** — Accelerates `indexOf`, pattern matching, and case conversion using native 256-bit SIMD vector instructions.
 
 ---
 
