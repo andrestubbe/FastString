@@ -12,6 +12,8 @@
 
 **FastString** is designed for high-frequency data processing where standard `java.lang.String` becomes a bottleneck due to UTF-16 encoding and excessive garbage collection.
 
+[**Watch the Demo**](https://www.youtube.com/watch?v=BZsqQl7WqWk) | Watch JMH Benchmark (YouTube)
+
 [![FastString Showcase](docs/screenshot.png)](https://www.youtube.com/watch?v=BZsqQl7WqWk)
 
 ---
