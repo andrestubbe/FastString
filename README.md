@@ -1,4 +1,4 @@
-﻿# FastString 0.1.1 [ALPHA-2026-08] — High-performance SIMD UTF-8 String for Java
+# FastString 0.1.1 [ALPHA-2026-08] — High-performance SIMD UTF-8 String for Java
 
 [![Status](https://img.shields.io/badge/status-0.1.1-brightgreen.svg)](https://github.com/andrestubbe/FastString/releases/tag/0.1.1)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -10,7 +10,7 @@
 
 **⚡ Mutable, zero-allocation UTF-8 string implementation with SIMD-accelerated operations. Bypasses Java String overhead for elite performance.**
 
-**FastString** is designed for high-frequency data processing where standard java.lang.String becomes a bottleneck due to UTF-16 encoding and excessive garbage collection.
+**FastString** is designed for high-frequency data processing where standard `java.lang.String` becomes a bottleneck due to UTF-16 encoding and excessive garbage collection.
 
 [**Watch the Demo**](https://www.youtube.com/watch?v=BZsqQl7WqWk) | Watch JMH Benchmark (YouTube)
 
@@ -20,24 +20,24 @@
 
 ## Quick Start
 
-`java
+```java
 import faststring.FastString;
 
 public class Demo {
     public static void main(String[] args) {
         // FastString works directly with zero-copy UTF-8 bytes
-        FastString s = new FastString(LOG_TRACE [2026-08-14] STATUS=CRITICAL_ALERT);
+        FastString s = new FastString("LOG_TRACE [2026-08-14] STATUS=CRITICAL_ALERT");
         
         // Native SIMD pattern search (AVX2 32-byte vector scan)
-        int index = s.indexOf(CRITICAL_ALERT);
-        System.out.println(Pattern found at index:  + index);
+        int index = s.indexOf("CRITICAL_ALERT");
+        System.out.println("Pattern found at index: " + index);
         
         // Zero-copy substring slice (shares underlying buffer)
         FastString slice = s.substring(11, 21);
-        System.out.println(Sliced Substring:  + slice);
+        System.out.println("Sliced Substring: " + slice);
     }
 }
-`
+```
 
 ---
 
@@ -60,11 +60,11 @@ public class Demo {
 
 ## Why FastString?
 
-Standard java.lang.String instances are immutable UTF-16 code unit structures that generate heavy Garbage Collector pressure and transcoding overhead during high-frequency text parsing. FastString provides:
+Standard `java.lang.String` instances are immutable UTF-16 code unit structures that generate heavy Garbage Collector pressure and transcoding overhead during high-frequency text parsing. `FastString` provides:
 
 - **Zero-Copy UTF-8 Native Substrate** — Operates directly on raw UTF-8 byte streams, eliminating UTF-16 to UTF-8 decoding overhead when reading files and network payloads.
-- **Mutable & Zero-GC In-Place Modifications** — Slice, mutate, and transform strings in-place without instantiating temporary String or StringBuilder objects on the heap.
-- **SIMD AVX2 Substring Sweeps** — Accelerates indexOf, pattern matching, and case conversion using native 256-bit SIMD vector instructions.
+- **Mutable & Zero-GC In-Place Modifications** — Slice, mutate, and transform strings in-place without instantiating temporary `String` or `StringBuilder` objects on the heap.
+- **SIMD AVX2 Substring Sweeps** — Accelerates `indexOf`, pattern matching, and case conversion using native 256-bit SIMD vector instructions.
 
 ---
 
@@ -72,14 +72,14 @@ Standard java.lang.String instances are immutable UTF-16 code unit structures th
 
 - **⚡ UTF-8 Native**: No conversion overhead between network/file bytes and the JVM.
 - **📦 Mutable & Efficient**: Modify strings in-place without generating garbage.
-- **🚀 SIMD Accelerated**: AVX2/SSE optimized for pattern searching (indexOf), case-conversion, and validation.
+- **🚀 SIMD Accelerated**: AVX2/SSE optimized for pattern searching (`indexOf`), case-conversion, and validation.
 - **🛠️ Zero Allocation**: Zero-copy substring slicing and direct memory access.
 
 ---
 
 ## Real-World Use Cases
 
-- 🔤 **High-Frequency Log Analyzers**: Search log streams with AVX2 SIMD pattern matching 10x-50x faster than java.lang.String.
+- 🔤 **High-Frequency Log Analyzers**: Search log streams with AVX2 SIMD pattern matching 10x-50x faster than `java.lang.String`.
 - 📦 **Zero-Copy Substring Slicing**: Slice network packet string regions without creating GC heap garbage.
 - ⚡ **In-Place String Processing**: Modify UTF-8 string buffers in-place for high-throughput HTTP servers and API proxies.
 
@@ -87,14 +87,14 @@ Standard java.lang.String instances are immutable UTF-16 code unit structures th
 
 ## Performance Benchmarks
 
-FastString provides zero-allocation UTF-8 string manipulation. In the official [JMH Benchmark](examples/Benchmark), the system measured AVX2 SIMD string delimiter scanning vs java.lang.String:
+`FastString` provides zero-allocation UTF-8 string manipulation. In the official [JMH Benchmark](examples/Benchmark), the system measured AVX2 SIMD string delimiter scanning vs `java.lang.String`:
 
-`	ext
+```text
 Benchmark                                    Mode  Cnt     Score   Error  Units
 Benchmark.testFastStringIndexOf              thrpt    3 145210.412          ops/s
-`
+```
 
-> **145,000+ String Operations per Second**: FastString slices and scans off-heap UTF-8 string buffers up to **10x-50x faster** than java.lang.String without creating GC garbage.
+> **145,000+ String Operations per Second**: `FastString` slices and scans off-heap UTF-8 string buffers up to **10x-50x faster** than `java.lang.String` without creating GC garbage.
 
 ---
 
@@ -102,29 +102,28 @@ Benchmark.testFastStringIndexOf              thrpt    3 145210.412          ops/
 
 | Method | Return Type | Description | Docs |
 |---|---|---|---|
-| 
-ew FastString(String str) | FastString | Creates a mutable UTF-8 FastString from a Java string. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
-| indexOf(String str) | int | SIMD AVX2-accelerated 256-bit vector scan for substring. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
-| substring(int begin, int end) | FastString | Zero-copy substring slice sharing the underlying buffer. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
-| ppend(String str) | FastString | Appends text in-place without JVM heap reallocation. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
-| 	oLowerCase() | FastString | Converts characters to lowercase via SIMD vectorization. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
-| 	oUpperCase() | FastString | Converts characters to uppercase via SIMD vectorization. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
-| getBytesFast() | yte[] | Direct UTF-8 byte retrieval via JNI Critical Sections. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
-| dispose() | oid | Deterministically releases native memory backing storage. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
+| `new FastString(String str)` | `FastString` | Creates a mutable UTF-8 FastString from a Java string. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
+| `indexOf(String str)` | `int` | SIMD AVX2-accelerated 256-bit vector scan for substring. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
+| `substring(int begin, int end)` | `FastString` | Zero-copy substring slice sharing the underlying buffer. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
+| `append(String str)` | `FastString` | Appends text in-place without JVM heap reallocation. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
+| `toLowerCase()` | `FastString` | Converts characters to lowercase via SIMD vectorization. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
+| `toUpperCase()` | `FastString` | Converts characters to uppercase via SIMD vectorization. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
+| `getBytesFast()` | `byte[]` | Direct UTF-8 byte retrieval via JNI Critical Sections. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
+| `dispose()` | `void` | Deterministically releases native memory backing storage. | [Reference](docs/REFERENCE.md#2-class-faststringfaststring) |
 
 ---
 
 ## FastJava Native Memory & Hardware Substrate
 
-FastString is part of the **FastJava Low-Level Native Memory Substrate** — a suite of modules designed to give Java applications raw C++ speed and direct hardware access:
+`FastString` is part of the **FastJava Low-Level Native Memory Substrate** — a suite of modules designed to give Java applications raw C++ speed and direct hardware access:
 
 | Substrate Module | Role & Key Capability |
 |---|---|
-| **[FastSharedMemory](https://github.com/andrestubbe/FastSharedMemory)** | Zero-Copy IPC Substrate — Ultra-fast inter-process shared memory buffers (< 78 ns latency) between Java processes and native C++ services. |
-| **[FastPointer](https://github.com/andrestubbe/FastPointer)** | 64-Bit Native Pointer Abstraction — Zero-allocation address arithmetic, handle casting (HWND, HANDLE), and off-heap struct navigation. |
-| **[FastMemory](https://github.com/andrestubbe/FastMemory)** | Off-Heap Direct Allocator — High-speed 32-byte / 64-byte SIMD aligned off-heap memory management and physical RAM page locking (VirtualLock). |
-| **[FastSIMD](https://github.com/andrestubbe/FastSIMD)** | AVX2 / Vector Acceleration — 256-bit SIMD hardware vectorization for memory scanning, math operations, and array sweeps. |
-| **[FastBytes](https://github.com/andrestubbe/FastBytes)** | Native Byte Buffer Engine — Off-heap byte arrays with zero-copy slicing, bulk copy, and direct native memory I/O. |
+| **[`FastSharedMemory`](https://github.com/andrestubbe/FastSharedMemory)** | Zero-Copy IPC Substrate — Ultra-fast inter-process shared memory buffers (< 78 ns latency) between Java processes and native C++ services. |
+| **[`FastPointer`](https://github.com/andrestubbe/FastPointer)** | 64-Bit Native Pointer Abstraction — Zero-allocation address arithmetic, handle casting (HWND, HANDLE), and off-heap struct navigation. |
+| **[`FastMemory`](https://github.com/andrestubbe/FastMemory)** | Off-Heap Direct Allocator — High-speed 32-byte / 64-byte SIMD aligned off-heap memory management and physical RAM page locking (VirtualLock). |
+| **[`FastSIMD`](https://github.com/andrestubbe/FastSIMD)** | AVX2 / Vector Acceleration — 256-bit SIMD hardware vectorization for memory scanning, math operations, and array sweeps. |
+| **[`FastBytes`](https://github.com/andrestubbe/FastBytes)** | Native Byte Buffer Engine — Off-heap byte arrays with zero-copy slicing, bulk copy, and direct native memory I/O. |
 
 ---
 
@@ -132,8 +131,8 @@ FastString is part of the **FastJava Low-Level Native Memory Substrate** — a s
 
 | Case | Java Example | Launcher | Description |
 |---|---|---|---|
-| **SIMD Pattern Search & Slicing** | [Demo.java](examples/Demo/src/main/java/faststring/Demo.java) | un-demo.bat | Interactive demo demonstrating AVX2 pattern search, zero-copy slicing, and throughput comparison against java.lang.String. |
-| **JMH Microbenchmark Suite** | [Benchmark.java](examples/Benchmark/src/main/java/faststring/benchmark/Benchmark.java) | un-benchmark.bat | Official JMH throughput benchmark measuring SIMD indexOf() vs standard JDK string search. |
+| **SIMD Pattern Search & Slicing** | [Demo.java](examples/Demo/src/main/java/faststring/Demo.java) | `run-demo.bat` | Interactive demo demonstrating AVX2 pattern search, zero-copy slicing, and throughput comparison against `java.lang.String`. |
+| **JMH Microbenchmark Suite** | [Benchmark.java](examples/Benchmark/src/main/java/faststring/benchmark/Benchmark.java) | `run-benchmark.bat` | Official JMH throughput benchmark measuring SIMD `indexOf()` vs standard JDK string search. |
 
 ---
 
@@ -141,9 +140,9 @@ FastString is part of the **FastJava Low-Level Native Memory Substrate** — a s
 
 ### Option 1: Maven (Recommended)
 
-Add the JitPack repository and the dependencies to your pom.xml:
+Add the JitPack repository and the dependencies to your `pom.xml`:
 
-`xml
+```xml
 <repositories>
     <repository>
         <id>jitpack.io</id>
@@ -187,11 +186,11 @@ Add the JitPack repository and the dependencies to your pom.xml:
         <version>0.1.0</version>
     </dependency>
 </dependencies>
-`
+```
 
 ### Option 2: Gradle (via JitPack)
 
-`groovy
+```groovy
 repositories {
     maven { url 'https://jitpack.io' }
 }
@@ -203,7 +202,7 @@ dependencies {
     implementation 'com.github.andrestubbe:FastPointer:0.1.1'
     implementation 'com.github.andrestubbe:FastCore:0.1.0'
 }
-`
+```
 
 ### Option 3: Direct Download (No Build Tool)
 
