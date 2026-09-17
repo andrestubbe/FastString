@@ -65,6 +65,17 @@ Standard `java.lang.String` instances are immutable UTF-16 code unit structures 
 - **Mutable & Zero-GC In-Place Modifications** — Slice, mutate, and transform strings in-place without instantiating temporary `String` or `StringBuilder` objects on the heap.
 - **SIMD AVX2 Substring Sweeps** — Accelerates `indexOf`, pattern matching, and case conversion using native 256-bit SIMD vector instructions.
 
+FastString replaces immutable UTF-16 heap objects with high-throughput native UTF-8 string buffers:
+
+| Feature | Standard `java.lang.String` | Apache Commons `StringUtils` | FastString |
+|:---|:---|:---|:---|
+| **Encoding Format** | UTF-16 / Compact Latin-1 | UTF-16 / String wrappers | **Raw Native UTF-8 Bytes** |
+| **Substring Slicing** | Copies underlying byte array| Allocates new String | **Zero-Copy Buffer View (0 Alloc)**|
+| **Pattern Search (`indexOf`)**| Scalar character loop | Scalar character loop | **AVX2 SIMD (32 Bytes / Cycle)** |
+| **Mutations (Append/Case)** | Allocates new String object | Allocates new String | **In-Place Vectorized Mutation** |
+| **Garbage Collector Churn** | High object creation | High object creation | **0 Heap Allocations (Off-Heap)** |
+| **Dependencies** | JDK standard lib | External JAR (~600 KB) | **Pure Java 17+ backed by FastCore** |
+
 ---
 
 ## Key Features
