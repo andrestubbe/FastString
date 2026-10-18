@@ -1,10 +1,10 @@
-# FastString 0.1.1 [ALPHA-2026-08] — High-performance SIMD UTF-8 String for Java
+# FastString 0.1.2 [ALPHA-2026-10-19] — High-performance SIMD UTF-8 String for Java
 
-[![Status](https://img.shields.io/badge/status-0.1.1-brightgreen.svg)](https://github.com/andrestubbe/FastString/releases/tag/0.1.1)
+[![Status](https://img.shields.io/badge/status-0.1.2-brightgreen.svg)](https://github.com/andrestubbe/FastString/releases/tag/0.1.2)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java](https://img.shields.io/badge/Java-17+-blue.svg)](https://www.java.com)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010+-lightgrey.svg)]()
-[![JitPack](https://img.shields.io/badge/JitPack-ready-green.svg)](https://jitpack.io/#andrestubbe/FastString)
+[![JitPack](https://img.shields.io/badge/JitPack-0.1.2-green.svg)](https://jitpack.io/#andrestubbe/FastString)
 
 ---
 
@@ -81,6 +81,7 @@ FastString replaces immutable UTF-16 heap objects with high-throughput native UT
 ## Key Features
 
 - **⚡ UTF-8 Native**: No conversion overhead between network/file bytes and the JVM.
+- **🛡️ Robust FastUTF Utilities**: Zero-allocation UTF-8 encoding/decoding without ANSI/Windows-1252 corruption, automatic BOM stripping, RFC 8259 JSON escaping preserving multilingual characters, and 7-bit ASCII fast-path detection.
 - **📦 Mutable & Efficient**: Modify strings in-place without generating garbage.
 - **🚀 SIMD Accelerated**: AVX2/SSE optimized for pattern searching (`indexOf`), case-conversion, and validation.
 - **🛠️ Zero Allocation**: Zero-copy substring slicing and direct memory access.
@@ -151,7 +152,7 @@ Add the JitPack repository and the dependencies to your `pom.xml`:
     <dependency>
         <groupId>com.github.andrestubbe</groupId>
         <artifactId>FastString</artifactId>
-        <version>0.1.1</version>
+        <version>0.1.2</version>
     </dependency>
 
     <!-- FastSIMD Hardware Vector Engine -->
@@ -192,7 +193,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.andrestubbe:FastString:0.1.1'
+    implementation 'com.github.andrestubbe:FastString:0.1.2'
     implementation 'com.github.andrestubbe:FastSIMD:0.1.3'
     implementation 'com.github.andrestubbe:FastMemory:0.1.1'
     implementation 'com.github.andrestubbe:FastPointer:0.1.1'
@@ -204,7 +205,7 @@ dependencies {
 
 Download the latest JARs directly to add them to your classpath:
 
-1. 🚀 **[FastString-0.1.1.jar](https://github.com/andrestubbe/FastString/releases/download/0.1.1/FastString-0.1.1.jar)** (Core Library)
+1. 🚀 **[FastString-0.1.2.jar](https://github.com/andrestubbe/FastString/releases/download/0.1.2/FastString-0.1.2.jar)** (Core Library)
 2. ⚡ **[FastSIMD-0.1.3.jar](https://github.com/andrestubbe/FastSIMD/releases/download/0.1.3/FastSIMD-0.1.3.jar)** (Hardware Vector Engine)
 3. 💾 **[FastMemory-0.1.1.jar](https://github.com/andrestubbe/FastMemory/releases/download/0.1.1/FastMemory-0.1.1.jar)** (32-Byte Aligned Allocator)
 4. 📍 **[FastPointer-0.1.1.jar](https://github.com/andrestubbe/FastPointer/releases/download/0.1.1/FastPointer-0.1.1.jar)** (Native Primitive Pointer)
